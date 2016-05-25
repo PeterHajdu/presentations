@@ -6,6 +6,7 @@
 -> model of computation
 -> investigate functions, function application and recursion
 -> Which problems can be solved?
+-> "Anything that is computable can be computed by lambda calculus."
 
 ---
 <Exp> ::= <identifier>        |
