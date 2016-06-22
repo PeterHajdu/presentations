@@ -56,6 +56,21 @@
 -> \\x.\\y.x
 
 ---
+-> partial application
+-> (\\x.\\y.x) z
+
+---
+-> partial application
+-> (\\x.\\y.x) z w
+-> \\y.z w
+
+---
+-> partial application
+-> (\\x.\\y.x) z w
+-> \\y.z w
+-> z
+
+---
 -> currying
 -> Moses Schonfinkel
 -> Curry
