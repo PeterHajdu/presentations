@@ -17,11 +17,37 @@
 -> mempty<>a == a<>mempty == a
 
 ---
+-> Representation in haskell
+class Monoid where
+  mempty :: a
+  mappend :: a -> a -> a
+  mconcat :: [a] -> a
+
+---
+-> Representation in scala
+trait Monoid[@sp(Int, Long, Float, Double) A] extends Any with Semigroup[A] {
+      def empty: A
+      ...
+}
+
+trait Semigroup[@sp(Int, Long, Float, Double) A] extends Any with Serializable {
+      def combine(x: A, y: A): A
+      ...
+}
+
+---
 -> Examples with numbers
 
 ---
 -> Examples with numbers
 -> sum, product
+
+--
+data Sum a = Sum {getSum :: a}
+
+instance Num a => Monoid(Sum a) where
+  mappend (Sum a) (Sum b) = Sum(a+b)
+  mempty = Sum 0
 
 ---
 -> Examples with numbers
