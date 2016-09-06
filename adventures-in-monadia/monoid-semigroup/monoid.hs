@@ -43,7 +43,7 @@ trait Semigroup[@sp(Int, Long, Float, Double) A] extends Any with Serializable {
 -> sum, product
 
 --
-data Sum a = Sum {getSum :: a}
+newtype Sum a = Sum {getSum :: a}
 
 instance Num a => Monoid(Sum a) where
   mappend (Sum a) (Sum b) = Sum(a+b)
