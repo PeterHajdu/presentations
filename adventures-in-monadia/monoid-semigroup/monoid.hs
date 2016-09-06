@@ -116,3 +116,17 @@ instance Num a => Monoid(Sum a) where
 -> g :: a -> a
 -> h = f <> g :: a -> a
 -> What is mempty?
+
+---
+-> Semigroup
+class Semigroup where
+  mappend :: a -> a -> a
+
+mappend has to be associative
+
+---
+-> A semigroup that is not a monoid?
+
+---
+-> A semigroup that is not a monoid?
+data NonEmpty a = a :| [a]
