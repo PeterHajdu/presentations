@@ -7,7 +7,7 @@
 
 ---
 -> algebraic structure with the following properties
--> single associative binary opertation
+-> single associative binary opertation: <>
 -> (a<>b)<>c == a<>(b<>c)
 
 ---
@@ -43,7 +43,7 @@ trait Semigroup[@sp(Int, Long, Float, Double) A] extends Any with Serializable {
 -> Examples with numbers
 -> sum, product
 
---
+---
 newtype Sum a = Sum {getSum :: a}
 
 instance Num a => Monoid(Sum a) where
@@ -75,6 +75,10 @@ instance Num a => Monoid(Sum a) where
 ---
 -> Examples with Maybe (Optional)
 -> default behavior
+
+---
+-> Examples with Maybe (Optional)
+-> default behavior
 -> first, last
 
 ---
@@ -101,14 +105,8 @@ instance Num a => Monoid(Sum a) where
 
 ---
 -> Examples with functions
--> f lst = lst <> lst
--> g lst = tail lst
--> h = f <> g
-
----
--> Examples with functions
--> f :: a -> a
--> g :: a -> a
+-> f n = [1..n]
+-> g n = tail [1..n]
 -> h = f <> g
 
 ---
@@ -116,7 +114,19 @@ instance Num a => Monoid(Sum a) where
 -> f :: a -> a
 -> g :: a -> a
 -> h = f <> g :: a -> a
+
+---
+-> Examples with functions
+-> f :: a -> a
+-> g :: a -> a
+-> h = f <> g :: a -> a
 -> What is mempty?
+
+---
+newtype Endo a = Endo {appEndo :: Int -> Int}
+instance Monoid (Endo a) where
+  mempty = Endo id
+  mappend (Endo f) (Endo g) = Endo (f.g)
 
 ---
 -> Semigroup
@@ -171,29 +181,29 @@ data NonEmpty a = a :| [a]
 -> What use are monoids to a programmer?
 -> Associativity
 -> divide and conquer algorithms
--> Parallelization
+-> parallelization
 
 ---
 -> What use are monoids to a programmer?
 -> Associativity
 -> divide and conquer algorithms
--> Parallelization
--> Incrementalism
+-> parallelization
+-> incrementalism
 
 ---
 -> What use are monoids to a programmer?
 -> Identity
-
----
--> What use are monoids to a programmer?
--> Identity
--> handling empty lists
 
 ---
 -> What use are monoids to a programmer?
 -> Identity
 -> empty lists
--> divide and conquer algorithm leafs
+
+---
+-> What use are monoids to a programmer?
+-> Identity
+-> empty lists
+-> divide and conquer algorithm: leaf
 
 ---
 -> What use are monoids to a programmer?
