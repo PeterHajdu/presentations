@@ -130,3 +130,47 @@ mappend has to be associative
 ---
 -> A semigroup that is not a monoid?
 data NonEmpty a = a :| [a]
+
+---
+-> What use are monoids to a programmer?
+-> Associativity
+
+---
+-> What use are monoids to a programmer?
+-> Associativity
+-> divide and conquer algorithms
+
+---
+-> What use are monoids to a programmer?
+-> Associativity
+-> divide and conquer algorithms
+-> Parallelization
+
+---
+-> What use are monoids to a programmer?
+-> Associativity
+-> divide and conquer algorithms
+-> Parallelization
+-> Incrementalism
+
+---
+-> What use are monoids to a programmer?
+-> Identity
+
+---
+-> What use are monoids to a programmer?
+-> Identity
+-> handling empty lists
+
+---
+-> What use are monoids to a programmer?
+-> Identity
+-> empty lists
+-> divide and conquer algorithm leafs
+
+---
+-> What use are monoids to a programmer?
+-> Identity
+-> empty lists
+-> divide and conquer algorithm: leaf
+-> incremental algorithms: start element
