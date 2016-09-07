@@ -1,4 +1,5 @@
 ---
+-> Adventures in Monadia
 -> monoid
 
 ---
@@ -130,6 +131,32 @@ mappend has to be associative
 ---
 -> A semigroup that is not a monoid?
 data NonEmpty a = a :| [a]
+
+---
+-> Where are they used?
+-> Foldable
+
+---
+-> Where are they used?
+-> Foldable
+-> Writer monad
+
+---
+-> Where are they used?
+-> Cabal:
+-> config files
+-> package databases
+-> sets of command line flags
+
+---
+-> Where are they used?
+-> Xmonad:
+-> configuration hooks
+
+---
+-> Where are they used?
+-> diagrams (vectorial image generation):
+-> graphic elements
 
 ---
 -> What use are monoids to a programmer?
