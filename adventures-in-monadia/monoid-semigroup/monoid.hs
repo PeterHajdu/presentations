@@ -86,7 +86,7 @@ instance Num a => Monoid(Sum a) where
 
 ---
 -> Examples with tuples
--> (a, b) <> (c, d) == (a<>b), c<>d)
+-> (a, b) <> (c, d) == (a<>c, b<>d)
 
 ---
 -> Examples with functions
