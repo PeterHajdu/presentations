@@ -123,9 +123,9 @@ instance Num a => Monoid(Sum a) where
 -> What is mempty?
 
 ---
-newtype Endo a = Endo {appEndo :: Int -> Int}
+newtype Endo a = Endo {appEndo :: a -> a}
 instance Monoid (Endo a) where
-  mempty = Endo id
+  mempty = Endo mempty
   mappend (Endo f) (Endo g) = Endo (f.g)
 
 ---
