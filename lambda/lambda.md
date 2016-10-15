@@ -1,82 +1,120 @@
 ---
--> lambda calculus
+author: 'Peter Hajdu'
+title: 'Adventures in Monadia / Lambda Calculus'
+...
 
----
--> Alonzo Church 1930
--> model of computation
--> investigate functions, function application and recursion
--> Which problems can be solved?
--> "Anything that is computable can be computed by lambda calculus."
+# lambda calculus
 
----
+# lambda calculus
+
+ * Alonzo Church 1930
+ * model of computation
+ * investigate functions, function application and recursion
+ * Which problems can be solved?
+ * "Anything that is computable can be computed by lambda calculus."
+
+# expressions
+
+```
 <Exp> ::= <identifier>        |
           ( <Exp> )           |
           <Exp> <Exp>         |    --application
-          \\<identifier>.<Exp>      --abstraction
+          \<identifier>.<Exp>      --abstraction
+```
 
----
--> identifiers: free, bound
--> \\x.xy
+# identifiers
 
----
--> application: beta reduction
--> (\\x.xq)(\\y.p(o y))
+ * free
+ * bound
 
----
--> application: beta reduction
--> (\\x.xq)(\\y.p(o y))
--> (\\y.p(o y))q
+```
+\x.xy
+```
 
----
--> application: beta reduction
--> (\\x.xq)(\\y.p(o y))
--> (\\y.p(o y))q
--> p(o q)
+# application - beta reduction
 
----
--> name change: alpha conversion
--> (\\x.xq)(\\q.p(o q))
+```
+(\x.xq)(\y.p(o y))
+```
 
----
--> name change: alpha conversion
--> (\\x.xq)(\\q.p(o q))
--> (\\x.xq)(\\y.p(o y))
+# application - beta reduction
 
----
--> normal order evaluation: left-most, outer-most
--> (\\x.7)((\\x.xx)(\\y.yy))
+```
+(\x.xq)(\y.p(o y))
+(\y.p(o y))q
+```
 
----
--> currying
--> \\xy.x
+# application - beta reduction
 
----
--> currying
--> \\xy.x
--> \\x.\\y.x
+```
+(\x.xq)(\y.p(o y))
+(\y.p(o y))q
+p(o q)
+```
 
----
--> partial application
--> (\\x.\\y.x) z
+# name change - alpha conversion
 
----
--> partial application
--> (\\x.\\y.x) z w
--> \\y.z w
+```
+(\x.xq)(\q.p(o q))
+```
 
----
--> partial application
--> (\\x.\\y.x) z w
--> \\y.z w
--> z
+# name change - alpha conversion
 
----
--> currying
--> Moses Schonfinkel
--> Curry
+```
+(\x.xq)(\q.p(o q))
+(\x.xq)(\y.p(o y))
+```
 
----
--> ? Curry
+# normal order evaluation
 
----
--> examples
+left-most, outer-most
+
+```
+(\x.7)((\x.xx)(\y.yy))
+```
+
+# currying
+
+```
+\xy.x
+```
+
+# currying
+
+```
+\xy.x
+\x.\y.x
+```
+
+# partial application
+
+```
+(\x.\y.x) z w
+```
+
+# partial application
+
+```
+(\x.\y.x) z w
+\y.z w
+```
+
+# partial application
+
+```
+(\x.\y.x) z w
+\y.z w
+z
+```
+
+# currying
+
+ * Moses Schonfinkel
+ * Curry
+
+# curry
+
+? Curry
+
+# examples
+
