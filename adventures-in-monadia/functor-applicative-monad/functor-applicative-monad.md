@@ -5,43 +5,6 @@ title: 'Adventures in Monadia / Functor, Applicative, Monad'
 
 # Why
 
-# Functor
-
-A functor maps a function over some structure.
-
-# Representation in haskell
-
-``` haskell
-class Functor f where
-  fmap :: (a -> b) -> f a -> f b
-
-
-f <$> fa == fmap f fa
-```
-
-# Functor laws
-
-``` haskell
-fmap (f . g) = fmap f . fmap g
-fmap id = id
-```
-
-# maybe example
-
-``` haskell
-let f = show . (*2)
-f <$> Just 10
-f <$> Nothing
-```
-
-# maybe functor instance
-
-``` haskell
-instance Functor Maybe where
-  fmap _ Nothing = Nothing
-  fmap f (Just a) = Just (f a)
-```
-
 # save the rebel base
 
 ``` haskell
@@ -73,6 +36,22 @@ realWorldAttack maybePoint =
     Just(point) -> Just (attack point)
 ```
 
+There has to be a simpler way!
+
+# Functor
+
+A functor maps a function over some structure.
+
+# Representation in haskell
+
+``` haskell
+class Functor f where
+  fmap :: (a -> b) -> f a -> f b
+
+
+f <$> fa == fmap f fa
+```
+
 # save the rebel base
 
 Express using _attack_ from the previous slide.
@@ -82,6 +61,22 @@ attack :: WeakPoint -> Explosion
 fmap   :: (a -> b) -> f a -> f b
 realWorldAttack :: Maybe WeakPoint -> Maybe Explosion
 realWorldAttack = fmap attack
+```
+
+# maybe example
+
+``` haskell
+let f = show . (*2)
+f <$> Just 10
+f <$> Nothing
+```
+
+# maybe functor instance
+
+``` haskell
+instance Functor Maybe where
+  fmap _ Nothing = Nothing
+  fmap f (Just a) = Just (f a)
 ```
 
 # list example
@@ -116,6 +111,13 @@ instance Functor ((->) r) where
 
 <$> :: (a -> b) -> f a      -> f b
 <$> :: (a -> b) -> (r -> a) -> (r -> b)
+```
+
+# Functor laws
+
+``` haskell
+fmap (f . g) = fmap f . fmap g
+fmap id = id
 ```
 
 # Representation in scala
