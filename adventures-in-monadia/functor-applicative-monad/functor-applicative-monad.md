@@ -82,9 +82,8 @@ instance Functor Maybe where
 # list example
 
 ``` haskell
-let f = show . (*2)
-fmap f [1..10] == f <$> [1..10]
-<$> :: (a -> b) -> f a -> f b
+show :: (Show a) => a -> String
+show <$> [1..10]
 ```
 
 # list functor instance
@@ -97,10 +96,10 @@ instance Functor [] where
 # function example
 
 ``` haskell
-let f = show . (*2)
-let g = (+10)
-f      <$> g
-b -> c <$> a -> b
+let f = show              <$> even
+        Boolean -> String <$> Int -> Boolean
+f 9
+f 10
 ```
 
 # function functor instance
@@ -109,7 +108,6 @@ b -> c <$> a -> b
 instance Functor ((->) r) where
     fmap = (.)
 
-<$> :: (a -> b) -> f a      -> f b
 <$> :: (a -> b) -> (r -> a) -> (r -> b)
 ```
 
@@ -128,6 +126,8 @@ trait Functor[F[_]] extends InvariantFunctor[F] {
   ....
 }
 ```
+
+# ???
 
 # save the rebel base
 
@@ -228,6 +228,7 @@ class Functor f => Applicative f where
 
  * maps a function that is contained in some structure
  * _combines_ the two layers of structure
+ * what did we apply?
 
 # maybe applicative instance
 
@@ -238,14 +239,16 @@ instance Applicative Maybe where
   Nothing <*> m = Nothing
 ```
 
+ * how does it combine the layers?
+
 # list applicative example
 
 ``` haskell
-pure 10 :: [Int]
-(,) <$> [1..3] <*> ['a'..'c']
-(*) <$> [1..3] <*> [1, 2]
-[(+2), (*3)] <*> [10, 20]
+[(+2), (*3)]        <*> [10, 20]
 [(++)"apple", tail] <*> ["tree", "pie"]
+
+
+(*) <$> [1..3]      <*> [1, 2]
 ```
 
 # list applicative instance
@@ -263,7 +266,6 @@ instance Applicative ((->) r) where
   pure = const
   f <*> g = \x -> f x (g x)
 
-<*> ::    f (a -> b) -> f a      -> f b
 <*> :: (r -> a -> b) -> (r -> a) -> (r -> b)
 ```
 
@@ -290,6 +292,8 @@ trait Apply[F[_]] extends Functor[F] { self =>
   ...
 }
 ```
+
+# ???
 
 # save the rebel base
 
@@ -347,11 +351,11 @@ xwing    :: Maybe SpaceShip         :: m b
 
 # Monad
 
-Maps a function over some structure and some more.
+Maps a function over some structure and some more...
 
 # Monad
 
-Maps a function over some structure and some more.
+Maps a function over some structure and some more...
 
 ``` haskell
 <$>  :: (a -> b) -> m a        -> m b
@@ -416,7 +420,7 @@ instance Monad Maybe where
   return         = pure
 ```
 
-# list exmple
+# list example
 
 ``` haskell
 let xPlusDouble x = [x, 2*x]
@@ -438,7 +442,6 @@ instance Monad [] where
 instance Monad ((->) r) where
   f >>= k = \r -> k (f r) r
 
->>= :: m a      -> (a -> m b)      -> m b
 >>= :: (r -> a) -> (a -> (r -> b)) -> (r -> b)
 ```
 
@@ -465,3 +468,6 @@ trait Bind[F[_]] extends Apply[F] { self =>
   ...
 }
 ```
+
+# ???
+
