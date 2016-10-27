@@ -66,9 +66,8 @@ realWorldAttack = fmap attack
 # maybe example
 
 ``` haskell
-let f = show . (*2)
-f <$> Just 10
-f <$> Nothing
+show <$> Just 10
+show <$> Nothing
 ```
 
 # maybe functor instance
