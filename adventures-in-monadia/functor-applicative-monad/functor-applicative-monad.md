@@ -40,7 +40,7 @@ There has to be a simpler way!
 
 # Functor
 
-A functor maps a function over some structure.
+A functor maps a function over some structure, without having any effect on the structure.
 
 # Representation in haskell
 
@@ -269,6 +269,15 @@ instance Applicative ((->) r) where
 <*> :: (r -> a -> b) -> (r -> a) -> (r -> b)
 ```
 
+# function example
+
+``` haskell
+listen :: Connection -> Request
+reply :: Connection -> Request -> ErrorCode
+service = reply <*> listen :: Connection -> ErrorCode
+service = \conn -> reply conn (listen conn)
+```
+
 # Applicative laws
 
 ``` haskell
@@ -444,6 +453,14 @@ instance Monad ((->) r) where
 
 >>= :: (r -> a) -> (a -> (r -> b)) -> (r -> b)
 ```
+
+# function example
+
+openConn :: Conf -> Conn
+sendReq  :: Conn -> Conf -> Resp
+showResp :: Resp -> Conf -> Reaction
+job = openConn >>= sendReq >>= showResp
+job :: Conf -> Reaction
 
 # monad laws
 
