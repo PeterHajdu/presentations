@@ -22,7 +22,7 @@ succ = \n s z -> s (n s z)
 pred = \n s z -> n (\g h -> h (g s)) (\u -> z) (\u -> u)
 
 one = succ zero
-sum = \x y -> x y s z
+sum = \x y s z -> x s (y s z)
 
 two = succ one
 mult = \x y s z -> x (y s) z
