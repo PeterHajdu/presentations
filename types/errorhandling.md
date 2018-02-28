@@ -89,6 +89,16 @@ int length(const char* str) {
 
  * f: A -> B
 
+# Examples
+
+``` scala
+def timesTwo(n: Integer): Integer = n * 2
+```
+
+``` haskell
+(*2)
+```
+
 # What is a partial function?
 
  * f: A -> B
