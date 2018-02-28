@@ -3,7 +3,7 @@ author: 'Peter Hajdu'
 title: 'Error handling'
 ...
 
-# In C
+# C
 
 ``` c
 int accept_connection(struct sockaddr_in source) {
@@ -25,7 +25,7 @@ int accept_connection(struct sockaddr_in source) {
 }
 ```
 
-# In languages with exceptions
+# languages with exceptions
 
 ``` c++
 int accept_connection(struct sockaddr_in source) {
@@ -47,7 +47,24 @@ int accept_connection(struct sockaddr_in source) {
 }
 ```
 
-# nullptr and friends
+# languages with exceptions
+
+``` python
+def getSecondWord(text):
+    text.split()[1]
+```
+
+# signalling error with null
+
+``` python
+def getSecondWord(text):
+    words = text.split()
+    if len(words) < 2:
+        return None
+    return words[1]
+```
+
+# handling null
 
 ``` java
 if (someobject != null) {
@@ -63,7 +80,7 @@ int length(const char* str) {
 }
 ```
 
-# nullptr and friends
+# null
 
  * Algol W 1965, Tony Hoare
  * _my billion-dollar mistake_
@@ -76,11 +93,14 @@ int length(const char* str) {
 
  * f: A -> B
  * accept_connection: Source -> Connection
+ * getSecondWord: String -> String
  * runtime error
- * avoid writing/calling partial functions
+ * Avoid writing/calling partial functions.
+ * How?
 
 # Static type checking and error handling
 
+ * expressing much more with types
  * runtime errors -> compile time errors
  * cheaper to fix
 
