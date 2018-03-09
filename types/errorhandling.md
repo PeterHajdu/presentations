@@ -3,6 +3,20 @@ author: 'Peter Hajdu'
 title: 'Error handling'
 ...
 
+# What is a total function?
+
+ * f: A -> B
+ * A: arguments
+ * B: return value
+
+# Examples
+
+``` scala
+def timesTwo(n: Integer): Integer = n * 2
+```
+
+ * f: A -> B
+
 # C
 
 ``` c
@@ -24,6 +38,8 @@ int accept_connection(struct sockaddr_in source) {
   return connection;
 }
 ```
+
+ * f: A -> B
 
 # languages with exceptions
 
@@ -47,12 +63,7 @@ int accept_connection(struct sockaddr_in source) {
 }
 ```
 
-# languages with exceptions
-
-``` python
-def getSecondWord(text):
-    text.split()[1]
-```
+ * f: A -> B
 
 # signalling error with null
 
@@ -63,6 +74,8 @@ def getSecondWord(text):
         return None
     return words[1]
 ```
+
+ * f: A -> B
 
 # handling null
 
@@ -85,34 +98,28 @@ int length(const char* str) {
  * Algol W 1965, Tony Hoare
  * _my billion-dollar mistake_
 
-# What is a total function?
+# partial functions
 
  * f: A -> B
-
-# Examples
-
-``` scala
-def timesTwo(n: Integer): Integer = n * 2
-```
-
-``` haskell
-(*2)
-```
-
-# What is a partial function?
-
- * f: A -> B
- * accept_connection: Source -> Connection
- * getSecondWord: String -> String
  * runtime error
  * Avoid writing/calling partial functions.
  * How?
 
-# Static type checking and error handling
+# What is needed?
 
- * expressing much more with types
+ * expressive type system
+ * culture
+
+# Static type checking
+
  * runtime errors -> compile time errors
  * cheaper to fix
+
+# Scala
+
+ * static type checking
+ * expressive type system
+ * culture
 
 # Error handling with exceptions
 
