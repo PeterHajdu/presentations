@@ -7,15 +7,6 @@ listen :: Socket -> Either ConnectionError Socket
 accept :: Socket -> Either ConnectionError Connection
 ```
 
-# Domain
-
-``` scala
-def socket(): Either[ConnectionError, Socket]
-def bind(socket: Socket): Either[ConnectionError, Socket]
-def listen(socket: Socket): Either[ConnectionError, Socket]
-def accept(socket: Socket): Either[ConnectionError, Connection]
-```
-
 # Restrict with types
 
 ``` haskell
@@ -23,15 +14,6 @@ socket :: Either ConnectionError Socket
 bind :: Socket -> Either ConnectionError BoundSocket
 listen :: BoundSocket -> Either ConnectionError ListeningSocket
 accept :: ListeningSocket -> Either ConnectionError Connection
-```
-
-# Restrict with types
-
-``` scala
-def socket(): Either[ConnectionError, Socket]
-def bind(socket: Socket): Either[ConnectionError, BoundSocket]
-def listen(socket: BoundSocket): Either[ConnectionError, ListeningSocket]
-def accept(socket: ListeningSocket): Either[ConnectionError, Connection]
 ```
 
 # Boilerplate
@@ -42,13 +24,47 @@ data BoundedSocket = BoundedSocket {fd :: FileDescriptor, opts :: [SocketOption]
 data ListeningSocket = ListeningSocket {fd :: FileDescriptor, opts :: [SocketOption]}
 ```
 
-# Boilerplate
+# Kinds
 
-``` scala
-class Socket(fd: FileDescriptor, opts: List[SocketOption])
-class BoundSocket(fd: FileDescriptor, opts: List[SocketOption])
-class ListeningSocket(fd: FileDescriptor, opts: List[SocketOption])
+ * *
+ * * -> *
+ * Int ?
+ * Map ?
+ * Map Int ?
+
+# Phantom types
+
+``` haskell
+data Socket s = Socket {fd :: FileDescriptor, opts :: [SocketOption]}
 ```
+
+ * Is it used?
+
+# Phantom types
+
+``` haskell
+data OpenSocket
+data BoundSocket
+data ListeningSocket
+
+data Socket s = Socket {fd :: FileDescriptor, opts :: [SocketOption]}
+```
+
+ * OpenSocket ?
+ * OpenSocket instances?
+ * Socket ?
+ * Socket OpenSocket ?
+
+# Domain
+
+``` haskell
+socket :: Either ConnectionError (Socket OpenSocket)
+bind :: (Socket OpenSocket) -> Either ConnectionError (Socket BoundSocket)
+listen :: (Socket BoundSocket) -> Either ConnectionError (Socket ListeningSocket)
+accept :: (Socket ListeningSocket) -> Either ConnectionError Connection
+```
+
+  * Socket Int ?
 
 # DataKinds
 
@@ -58,26 +74,17 @@ data SocketState =
   | Bound
   | Listening
 
-data Socket {s :: SocketState} = Socket {...}
+data Socket {s :: SocketState} = Socket {fd :: FileDescriptor, opts :: [SocketOption]}
 ```
 
-# Phantom types
+  * :t Open
+  * :k 'Open
 
-``` scala
-sealed trait SocketState
-trait Open extends SocketState
-trait Bound extends SocketState
-trait Listening extends SocketState
-
-class Socket[T <: SocketState](fd: FileDescriptor, opts: List[SocketOption])
-```
-
-# Phantom types
-
-``` scala
-def socket(): Either[ConnectionError, Socket[Open]]
-def bind(socket: Socket[Open]): Either[ConnectionError, Socket[Bound]]
-def listen(socket: Socket[Bound]): Either[ConnectionError, Socket[Listening]]
-def accept(socket: Socket[Listening]): Either[ConnectionError, Connection]
+# Domain
+``` haskell
+socket :: Either ConnectionError (Socket 'Open)
+bind :: (Socket 'Open) -> Either ConnectionError (Socket 'Bound)
+listen :: (Socket 'Bound) -> Either ConnectionError (Socket 'Listening)
+accept :: (Socket 'Listening) -> Either ConnectionError Connection
 ```
 
