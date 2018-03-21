@@ -1,3 +1,8 @@
+---
+author: 'Peter Hajdu'
+title: 'Phantom types'
+...
+
 # Domain
 
 ``` haskell
@@ -6,6 +11,8 @@ bind :: Socket -> Either ConnectionError Socket
 listen :: Socket -> Either ConnectionError Socket
 accept :: Socket -> Either ConnectionError Connection
 ```
+
+ * problems
 
 # Restrict with types
 
@@ -16,6 +23,8 @@ listen :: BoundSocket -> Either ConnectionError ListeningSocket
 accept :: ListeningSocket -> Either ConnectionError Connection
 ```
 
+ * problems
+
 # Boilerplate
 
 ``` haskell
@@ -23,14 +32,6 @@ data Socket = Socket {fd :: FileDescriptor, opts :: [SocketOption]}
 data BoundedSocket = BoundedSocket {fd :: FileDescriptor, opts :: [SocketOption]}
 data ListeningSocket = ListeningSocket {fd :: FileDescriptor, opts :: [SocketOption]}
 ```
-
-# Kinds
-
- * *
- * * -> *
- * Int ?
- * Map ?
- * Map Int ?
 
 # Phantom types
 
@@ -55,7 +56,7 @@ data Socket s = Socket {fd :: FileDescriptor, opts :: [SocketOption]}
  * Socket ?
  * Socket OpenSocket ?
 
-# Domain
+# Using phantom types
 
 ``` haskell
 socket :: Either ConnectionError (Socket OpenSocket)
@@ -65,6 +66,14 @@ accept :: (Socket ListeningSocket) -> Either ConnectionError Connection
 ```
 
   * Socket Int ?
+
+# Kinds
+
+ * ``` * ```
+ * ``` * -> * ```
+ * Int ?
+ * Map ?
+ * Map Int ?
 
 # DataKinds
 
@@ -81,6 +90,7 @@ data Socket {s :: SocketState} = Socket {fd :: FileDescriptor, opts :: [SocketOp
   * :k 'Open
 
 # Domain
+
 ``` haskell
 socket :: Either ConnectionError (Socket 'Open)
 bind :: (Socket 'Open) -> Either ConnectionError (Socket 'Bound)
