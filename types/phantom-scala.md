@@ -1,3 +1,8 @@
+---
+author: 'Peter Hajdu'
+title: 'Phantom types in scala'
+...
+
 # Domain
 
 ``` scala
@@ -44,4 +49,14 @@ def bind(socket: Socket[Open]): Either[ConnectionError, Socket[Bound]]
 def listen(socket: Socket[Bound]): Either[ConnectionError, Socket[Listening]]
 def accept(socket: Socket[Listening]): Either[ConnectionError, Connection]
 ```
+
+# Misc
+
+ * smart constructors
+ * no runtime overhead
+
+# Examples
+
+ * door
+ * signed messages
 
