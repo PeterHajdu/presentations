@@ -88,3 +88,13 @@ listen :: (Socket 'Bound) -> Either ConnectionError (Socket 'Listening)
 accept :: (Socket 'Listening) -> Either ConnectionError Connection
 ```
 
+# Misc
+
+ * smart constructors
+ * no runtime overhead
+
+# Examples
+
+ * door
+ * signed messages
+
