@@ -30,3 +30,12 @@ atVec (Cons a _) Z = a
 atVec (Cons _ rest) (S n) = atVec rest n
 atVec Nil _ = undefined
 
+data SomeVector :: a -> * where
+  MkSomeVector :: SNat n -> Vector n a -> SomeVector a
+
+consSomeVec :: a -> SomeVector a -> SomeVector a
+consSomeVec item (MkSomeVector n oldVec) = MkSomeVector (SSucc n) (Cons item oldVec)
+
+replicateVec :: a -> SNat n -> Vector n a
+replicateVec _ SZ = Nil
+replicateVec item (SSucc rest) = Cons item $ replicateVec item rest
