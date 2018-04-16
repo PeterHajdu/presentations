@@ -3,6 +3,20 @@ author: 'Peter Hajdu'
 title: 'Introduction to dependent types'
 ...
 
+# Dependent types
+
+ * types indexed by data values
+ * types expressing logical formulas
+
+# Dependent type capabilities
+
+ * type computation
+ * indexed types
+ * double-duty data
+ * equivalence proofs
+
+Stephanie Weirich
+
 # Fixed size vectors
 
 ``` idris
@@ -44,7 +58,7 @@ data Nat =
  * :t ('Succ ('Succ 'Zero))
  * :t (Succ (Succ Zero))
 
-# Vector / GADTS
+# Vector / GADTs
 
 ``` haskell
 data Vector :: Nat -> a -> * where
@@ -76,8 +90,8 @@ head (Cons a _) = a
 # tail
 
 ``` haskell
-tailVec :: Vector ('Succ n) a -> Vector n a
-tailVec (Cons _ rest) = rest
+tail :: Vector ('Succ n) a -> Vector n a
+tail (Cons _ rest) = rest
 ```
 
 # zip 1
