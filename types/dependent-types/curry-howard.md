@@ -116,6 +116,10 @@ Curry Howard correspondence:
 
 # Example reverse
 
+ * rewrite
+ * :t sym
+ * :t cong
+
 # Negation
 
 expressing negation:
