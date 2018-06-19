@@ -129,20 +129,18 @@ data Void : Type where
 
 # Stating the impossible 2
 
- * not (n = m)
- * (n = m) -> impossible
- * (n = m) -> Void
+ * not (x = S x)
+ * (x = S x) -> impossible
+ * (x = S x) -> Void
 
 # Stating the impossible 3
 
- * f: (n = m) -> Void
+ * f: (x = S x) -> Void
  * referential transparency
 
 # Stating the impossible 4
 
 ``` idris
-data Void : Type where
-
 valueNotSucc : x = S x -> Void
 valueNotSucc Refl impossible
 ```
