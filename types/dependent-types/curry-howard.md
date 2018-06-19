@@ -96,7 +96,7 @@ checkEqNat (S n) (S m) = case checkEqNat n m of
 # Equality 7
 
 ``` idris
-sameS : (n = m) -> ((S n) = (S m))
+sameS : (n = m) -> (S n = S m)
 ```
 
  * equality proposition
@@ -105,7 +105,7 @@ sameS : (n = m) -> ((S n) = (S m))
 # Equality 8
 
 ``` idris
-sameS : (n = m) -> ((S n) = (S m))
+sameS : (n = m) -> (S n = S m)
 sameS Refl = Refl
 ```
 

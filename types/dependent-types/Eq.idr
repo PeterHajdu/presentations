@@ -1,6 +1,6 @@
 %default total
 
-sameS : (n = m) -> ((S n) = (S m))
+sameS : (n = m) -> (S n = S m)
 sameS Refl = Refl
 
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
