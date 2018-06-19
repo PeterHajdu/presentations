@@ -27,6 +27,15 @@ data (=) : a -> b -> Type where
   Refl : x = x
 ```
 
+type, value, valid:
+
+ * (3 = 3)
+ * the (3 = 3) Refl
+ * (2 = 3)
+ * the (2 = 3) Refl
+ * ("kutyus" = "kutyus")
+ * the ("kutyus" = "kutyus") Refl
+
 # Equality 2
 
 ``` idris
