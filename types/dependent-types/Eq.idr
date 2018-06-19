@@ -12,8 +12,8 @@ checkEqNat (S n) (S m) = case checkEqNat n m of
                               Just eq => Just (sameS eq)
 
 
-valueNotSucc : (x : Nat) -> x = S x -> Void
-valueNotSucc _ Refl impossible
+valueNotSucc : x = S x -> Void
+valueNotSucc Refl impossible
 
 zeroNotSucc : (0 = S n) -> Void
 zeroNotSucc Refl impossible

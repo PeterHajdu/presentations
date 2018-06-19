@@ -114,20 +114,45 @@ Curry Howard correspondence:
  * types are propositions
  * values are proofs
 
-# Stating the impossible
+# Negation
 
-Need an evidence that an instance with type (x = y) can not exist.
+expressing negation:
+
+ * not p
+ * p -> impossible
+
+# Stating the impossible 1
+
+``` idris
+data Void : Type where
+```
+
+# Stating the impossible 2
+
+ * not (n = m)
+ * (n = m) -> impossible
+ * (n = m) -> Void
+
+# Stating the impossible 3
+
+ * f: (n = m) -> Void
+ * referential transparency
+
+# Stating the impossible 4
 
 ``` idris
 data Void : Type where
 
-valueNotSucc : (x : Nat) -> x = S x -> Void
-valueNotSucc _ Refl impossible
+valueNotSucc : x = S x -> Void
+valueNotSucc Refl impossible
+```
 
--- principle of explosion
--- from contradiction, anything follows
--- a contradictory hypothesis entails anything, even false things
+# Principle of explosion
 
+ * from contradiction, anything follows
+ * a contradictory hypothesis entails anything, even false things
+
+``` idris
 void : Void -> a
 ```
 
