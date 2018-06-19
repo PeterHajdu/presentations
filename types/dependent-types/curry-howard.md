@@ -114,6 +114,8 @@ Curry Howard correspondence:
  * types are propositions
  * values are proofs
 
+# Example reverse
+
 # Negation
 
 expressing negation:
