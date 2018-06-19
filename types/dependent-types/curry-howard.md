@@ -11,26 +11,99 @@ title: 'Curry Howard correspondence'
 # Curry Howard correspondence
 
  * link between logic and computation
- * types are propositions
- * values are proofs
 
-# Equality
+# Nat
+
+``` idris
+data Nat : Type where
+  Z : Nat
+  S : Nat -> Nat
+```
+
+# Equality 1
 
 ``` idris
 data (=) : a -> b -> Type where
   Refl : x = x
+```
 
-sameS : (n = m) -> ((S n) = (S m))
-sameS Refl = Refl
+# Equality 2
 
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+```
+
+# Equality 3
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+checkEqNat Z (S n) = Nothing
+checkEqNat (S n) Z = Nothing
+checkEqNat Z Z = ?
+checkEqNat (S n) (S m) = ?
+```
+
+# Equality 4
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+checkEqNat Z (S n) = Nothing
+checkEqNat (S n) Z = Nothing
+checkEqNat Z Z = Just $ Refl
+checkEqNat (S n) (S m) = ?
+```
+
+# Equality 5
+
+``` idris
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
 checkEqNat Z (S n) = Nothing
 checkEqNat (S n) Z = Nothing
 checkEqNat Z Z = Just $ Refl
 checkEqNat (S n) (S m) = case checkEqNat n m of
                               Nothing => Nothing
-                              Just eq => Just (sameS eq)
+                              Just p1 => Just p2
 ```
+
+ * :t p1 => (n = m)
+ * :t p2 => (S n = S m)
+
+# Equality 6
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+checkEqNat Z (S n) = Nothing
+checkEqNat (S n) Z = Nothing
+checkEqNat Z Z = Just $ Refl
+checkEqNat (S n) (S m) = case checkEqNat n m of
+                              Nothing => Nothing
+                              Just p1 => Just (sameS p1)
+```
+
+ * :t p1 => (n = m)
+ * :t (sameS p1) => (S n = S m)
+ * :t sameS => (n = m) -> (S n = S m)
+
+# Equality 7
+
+``` idris
+sameS : (n = m) -> ((S n) = (S m))
+```
+
+ * equality proposition
+ * implication
+
+# Equality 8
+
+``` idris
+sameS : (n = m) -> ((S n) = (S m))
+sameS Refl = Refl
+```
+
+Curry Howard correspondence:
+
+ * types are propositions
+ * values are proofs
 
 # Stating the impossible
 
