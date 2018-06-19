@@ -160,12 +160,26 @@ valueNotSucc Refl impossible
 void : Void -> a
 ```
 
-# Decidability
+# Decidability 1
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+```
+
+# Decidability 2
 
 ``` idris
 data Dec : (prop : Type) -> Type where
   Yes : (proof : prop) -> Dec prop
   No : (contra : prop -> Void) -> Dec prop
+```
+
+# Decidability 3
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+checkEqNat2 : (n1 : Nat) -> (n2 : Nat) -> Dec (n1 = n2)
+```
 
 checkEqNat2 : (n1 : Nat) -> (n2 : Nat) -> Dec (n1 = n2)
 checkEqNat2 Z Z = Yes Refl
