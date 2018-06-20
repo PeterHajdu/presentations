@@ -29,6 +29,10 @@ data (=) : a -> b -> Type where
 
 type, value, valid:
 
+ * (Nat = Nat)
+ * the (Nat = Nat) Refl
+ * (Nat = String)
+ * the (Nat = String) Refl
  * (3 = 3)
  * the (3 = 3) Refl
  * (2 = 3)
@@ -39,10 +43,16 @@ type, value, valid:
 # Equality 2
 
 ``` idris
-checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+checkEqNat : Nat -> Nat -> Maybe (n1 = n2)
 ```
 
 # Equality 3
+
+``` idris
+checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
+```
+
+# Equality 4
 
 ``` idris
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
@@ -52,7 +62,7 @@ checkEqNat Z Z = ?
 checkEqNat (S n) (S m) = ?
 ```
 
-# Equality 4
+# Equality 5
 
 ``` idris
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
@@ -62,7 +72,7 @@ checkEqNat Z Z = Just $ Refl
 checkEqNat (S n) (S m) = ?
 ```
 
-# Equality 5
+# Equality 6
 
 ``` idris
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
@@ -77,7 +87,7 @@ checkEqNat (S n) (S m) = case checkEqNat n m of
  * :t p1 => (n = m)
  * :t p2 => (S n = S m)
 
-# Equality 6
+# Equality 7
 
 ``` idris
 checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
@@ -93,16 +103,18 @@ checkEqNat (S n) (S m) = case checkEqNat n m of
  * :t (sameS p1) => (S n = S m)
  * :t sameS => (n = m) -> (S n = S m)
 
-# Equality 7
+# Equality 8
 
 ``` idris
-sameS : (n = m) -> (S n = S m)
+(n = m) -> (S n = S m)
 ```
+
+?
 
  * equality proposition
  * implication
 
-# Equality 8
+# Equality 9
 
 ``` idris
 sameS : (n = m) -> (S n = S m)
@@ -151,13 +163,38 @@ valueNotSucc : x = S x -> Void
 valueNotSucc Refl impossible
 ```
 
-# Principle of explosion
+# Principle of explosion 1
+
+``` idris
+t1 : A -> Void
+
+something : A -> B
+something a = t1 a
+
+-- Void ? B
+```
+
+# Principle of explosion 2
 
  * from contradiction, anything follows
  * a contradictory hypothesis entails anything, even false things
 
+# Principle of explosion 3
+
 ``` idris
 void : Void -> a
+```
+
+# Principle of explosion 4
+
+
+``` idris
+void : Void -> a
+
+t1 : A -> Void
+
+something : A -> B
+something a = void $ t1 a
 ```
 
 # Decidability 1
@@ -181,6 +218,9 @@ checkEqNat : (num1 : Nat) -> (num2 : Nat) -> Maybe (num1 = num2)
 checkEqNat2 : (n1 : Nat) -> (n2 : Nat) -> Dec (n1 = n2)
 ```
 
+# Decidability 4
+
+``` idris
 checkEqNat2 : (n1 : Nat) -> (n2 : Nat) -> Dec (n1 = n2)
 checkEqNat2 Z Z = Yes Refl
 checkEqNat2 Z (S n) = No zeroNotSucc
