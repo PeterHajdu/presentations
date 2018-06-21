@@ -241,3 +241,9 @@ noRec : ((k = j) -> Void) -> (S k = S j) -> Void
 noRec contra Refl = contra Refl
 ```
 
+# Further reading
+
+ * https://softwarefoundations.cis.upenn.edu/
+ * Type-Driven Development with Idris by Edwin Brady
+ * Verified Functional Programming in Agda by Aaron Stump
+
